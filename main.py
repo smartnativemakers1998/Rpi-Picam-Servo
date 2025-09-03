@@ -25,31 +25,27 @@ while True:
     if not ret:
         break
     
-    # Convert to HSV for color detection
     hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
 
-    # Example: Detect "Tin" (let’s say gray/silver range)
+    # Detect "Tin" (gray/silver range)
     lower_tin = (0, 0, 50)
     upper_tin = (180, 50, 200)
     mask_tin = cv2.inRange(hsv, lower_tin, upper_tin)
 
-    # Example: Detect "Plastic" (bright colors, e.g. red)
+    # Detect "Plastic" (red range example)
     lower_plastic = (0, 100, 100)
     upper_plastic = (10, 255, 255)
     mask_plastic = cv2.inRange(hsv, lower_plastic, upper_plastic)
 
-    # Decision based on detection
     if cv2.countNonZero(mask_tin) > 5000:
         print("Tin detected → Servo Clockwise")
-        set_angle(0)   # Clockwise
+        set_angle(0)
     elif cv2.countNonZero(mask_plastic) > 5000:
         print("Plastic detected → Servo Anti-Clockwise")
-        set_angle(180) # Anti-Clockwise
+        set_angle(180)
     
-    # Show frame
     cv2.imshow("Frame", frame)
 
-    # Exit with 'q'
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 
