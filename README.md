@@ -37,3 +37,31 @@ If Plastic is detected → the servo rotates **anti-clockwise**.
 Update system first:
 ```bash
 sudo apt update && sudo apt upgrade -y
+```
+
+Install GPIO library:
+```bash
+sudo apt install python3-rpi.gpio
+```
+
+Install OpenCV:
+```bash
+sudo apt install python3-opencv
+```
+
+Install Camera Support:
+```bash
+sudo apt install python3-libcamera python3-kms++
+```
+
+Verify camera:
+```bash
+libcamera-hello
+```
+
+
+## ▶️ Running the Project
+```bash
+python3 main.py
+```
+Press q to quit the program.
